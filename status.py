@@ -76,4 +76,5 @@ button_exit.grid(row=1, column=1)
 button_forward.grid(row=1, column=2, pady=10)
 status.grid(row=2, column=0, columnspan=3, sticky=W+E)
 
+
 root.mainloop()
