@@ -19,7 +19,6 @@ def popup():
 	# 	Label(root, text="You Clicked No!!").pack()
 
 
-
 Button(root, text="Popup", command=popup).pack()
 
 root.mainloop()
