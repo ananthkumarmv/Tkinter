@@ -33,4 +33,3 @@ myButton = Button(root, text="Show Selection", command=show).pack()
 
 
 root.mainloop()
- 
