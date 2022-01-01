@@ -38,16 +38,25 @@ def submit():
 
 	# Create cursor
 	c = conn.cursor()
+	
+	# insert into table
+	c.execute("INSERT INTO addresses VALUES (:f_name, :l_name, :address, :city, :state, :zipcode)",)
+			{
+				'f_name': f_name.get(),
+				'l_name': l_name.get(),
+				'address': address.get(),
+				'city': city.get(),
+				'state': state.get(),
+				'zipcode': zipcode.get()
+			}
+
+
 
 	#Commit Changes
 	conn.commit()
 
 	#Close COnnection
 	conn.close()
-
-
-
-
 
 	# Clear The text boxes
 	f_name.delete(0, END)
