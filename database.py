@@ -1,6 +1,6 @@
 from tkinter import *
 from PIL import ImageTk, Image
-from sqlite3
+import sqlite3
 
 
 root = Tk()
@@ -19,7 +19,13 @@ c = conn.cursor()
 
 
 # Create table
-c.execute("")
+c.execute("""CREATE TABLE addresses(
+			first_name text, 
+			last_name text,
+			address text,
+			city text,
+			state text,
+			zipcode integer)""")
 
 #Commit Changes
 conn.commit()
