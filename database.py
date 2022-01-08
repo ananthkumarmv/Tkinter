@@ -39,8 +39,8 @@ def submit():
 	# Create cursor
 	c = conn.cursor()
 	
-	# insert into table
-	c.execute("INSERT INTO addresses VALUES (:f_name, :l_name, :address, :city, :state, :zipcode)",)
+	#insert into table
+	c.execute("INSERT INTO addresses VALUES (:f_name, :l_name, :address, :city, :state, :zipcode)",
 			{
 				'f_name': f_name.get(),
 				'l_name': l_name.get(),
@@ -48,8 +48,7 @@ def submit():
 				'city': city.get(),
 				'state': state.get(),
 				'zipcode': zipcode.get()
-			}
-
+			})
 
 
 	#Commit Changes
@@ -65,6 +64,34 @@ def submit():
 	city.delete(0, END)
 	state.delete(0, END)
 	zipcode.delete(0, END)
+
+
+
+# Create a Query Function
+def query():
+	# Create a datanbase or connect to one
+	conn = sqlite3.connect('address_book.db')
+
+	# Create cursor
+	c = conn.cursor()
+
+	# Query the Database
+	c.execute("Select *, oid FROM addresses")
+	records = c.fetchall()
+	print(records)
+
+	# Loop Throuch Results
+	print_records = ''
+	for record in records:
+		print_records += str(record[0]) + '\n'
+
+	query_label = Label(root, text=print_records)
+	query_label.grid(row=8, column=0, columnspan=2)
+
+	conn.commit()
+
+	#Close COnnection
+	conn.close()
 
 
 
@@ -101,6 +128,12 @@ zipcode_label.grid(row=5, column=0)
 # Create a Submit Button
 submit_btn = Button(root, text="Add Record To Database", command=submit)
 submit_btn.grid(row=6, column=0, columnspan=2, pady=10, padx=10, ipadx=100)
+
+
+# Create a Query Button
+query_btn = Button(root, text="Show Records", command=query)
+query_btn.grid(row=7, column=0, columnspan=2, pady=10, ipadx=137)
+
 
 #Commit Changes
 conn.commit()
