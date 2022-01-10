@@ -90,7 +90,7 @@ def query():
 
 	conn.commit()
 
-	#Close COnnection
+	#Close Connection
 	conn.close()
 
 
